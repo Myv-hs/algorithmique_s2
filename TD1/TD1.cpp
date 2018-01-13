@@ -72,10 +72,26 @@ void reduit (enspoint &a) {
 	}
 }
 
+void afficheCoord (point a){
+	cout<<"( "<<a.x<<" , "<<a.y<<" )";
+}
+
 void afficheEnsemble (enspoint a) {
 	for(int i=0;i<a.nb;i++){
-		cout<<"p"<<i<<" ("<<a.p[i].x <<","<<a.p[i].y<<")\n";
+		cout<<"p"<<i<<" "; afficheCoord(a.p[i]); cout<<endl;
 	}
+}
+
+point plusproche (enspoint a) {
+	point O; 
+	O.x = 0, O.y = 0;
+	int smallestIndex = 0;
+	for(int i=1;i<a.nb;i++){
+		if(distance(a.p[i],O)<distance(a.p[smallestIndex],O)){
+			smallestIndex = i;
+		}
+	}
+	return a.p[smallestIndex];
 }
 
 int main () {
