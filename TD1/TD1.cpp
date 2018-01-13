@@ -106,12 +106,21 @@ float distmin (enspoint a) {
 	return distancemin;
 }
 
+bool tousalignes (enspoint a) {
+	float aire =0;
+	if(a.nb < 3 ) return 1;
+	for(int i=2;i<a.nb;i++){
+		aire += (a.p[0].x*(a.p[1].y-a.p[i].y) + a.p[1].x*(a.p[i].y-a.p[0].y) + a.p[i].x*(a.p[0].y-a.p[1].y));
+	}
+	return (aire==0);
+}
+
 int main () {
 	enspoint A;
 	saisieEnsemble(A);
 	reduit(A);
 	afficheEnsemble(A);
-	cout << "distance min " <<distmin(A)<<endl;
+	cout << "Tous Aligne? "<<tousalignes(A)<<endl;
 
 	return 0;
 }
