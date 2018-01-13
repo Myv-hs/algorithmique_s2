@@ -2,7 +2,7 @@
 #include <array>
 #include <cmath>
 using namespace std;
-const unsigned int buffSize = 64;
+const unsigned int buffSize = 32;
 
 struct point {
 	float x,y;
@@ -11,7 +11,7 @@ struct point {
 using points = array<point, buffSize>;
 struct enspoint {
 	points p;
-	int nombre;
+	int nb;
 };
 
 bool confondus (point a, point b) {
@@ -39,11 +39,11 @@ point milieu (point a, point b) {
 point centre (enspoint a) {
 	point g;
 	float gx=0, gy=0;
-	for(int=0;i<a.nombre;i++){
+	for(int i=0;i<a.nb;i++){
 		gx+=a.p[i].x;
 		gy+=a.p[i].y;
 	}
-	g.x=gx/a.nombre; g.y=gy/a.nombre;
+	g.x=gx/a.nb; g.y=gy/a.nb;
 	return g;
 }
 
@@ -52,20 +52,37 @@ void saisiePoint (point &a){
 }
 
 void saisieEnsemble (enspoint &a){
-	cout << "Nombre de points: ";cin>>a.nombre;
-	for(int i=0;i<a.nombre;i++){
+	cout << "Nombre de points: ";cin>>a.nb;
+	for(int i=0;i<a.nb;i++){
 		saisiePoint(a.p[i]);
 	}
 }
 
-void reduit () {
-	
+void reduit (enspoint &a) {
+	for(int i=0;i<a.nb;i++){
+		for(int j=i+1;j<a.nb;j++){
+			if(confondus(a.p[i],a.p[j])) {
+				a.nb--;
+				for(int k=j;k<a.nb;k++){
+					a.p[k]=a.p[k+1];
+				}
+				j--;
+			}
+		}
+	}
+}
+
+void afficheEnsemble (enspoint a) {
+	for(int i=0;i<a.nb;i++){
+		cout<<"p"<<i<<" ("<<a.p[i].x <<","<<a.p[i].y<<")\n";
+	}
 }
 
 int main () {
-	point A,B;
-	saisiePoint(A); saisiePoint(B); 
-	point C = milieu(A,B);
-	cout <<"distance: " <<distance(A,B) <<" milieu ("<<C.x<<","<<C.y<<")"<<endl;
+	enspoint A;
+	saisieEnsemble(A);
+	reduit(A);
+	afficheEnsemble(A);
+
 	return 0;
 }
