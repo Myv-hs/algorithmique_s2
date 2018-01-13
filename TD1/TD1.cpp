@@ -94,11 +94,24 @@ point plusproche (enspoint a) {
 	return a.p[smallestIndex];
 }
 
+float distmin (enspoint a) {
+	if(a.nb==1) return 0;
+	float distancemin = distance(a.p[0],a.p[1]);
+	for(int i=0;i<a.nb;i++) {
+		for(int j=i+1;j<a.nb;j++){
+			float testdist = distance(a.p[i],a.p[j]); 
+			if(testdist<distancemin) distancemin = testdist;
+		}
+	}
+	return distancemin;
+}
+
 int main () {
 	enspoint A;
 	saisieEnsemble(A);
 	reduit(A);
 	afficheEnsemble(A);
+	cout << "distance min " <<distmin(A)<<endl;
 
 	return 0;
 }
