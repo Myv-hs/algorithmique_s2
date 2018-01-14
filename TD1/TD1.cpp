@@ -145,10 +145,8 @@ enspoint contour (enspoint a) {
 
 bool absord (enspoint a) {
 	for(int i=1;i<a.nb;i++){
-		cout<<"loop1\n";
 		if(a.p[i].x<a.p[i-1].x){
 			for(int j=a.nb-1;j>0;j--){
-				cout<<"loop2\n";
 				if(a.p[j].x>a.p[j-1].x){
 					return 0;
 				}
