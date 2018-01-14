@@ -107,7 +107,6 @@ float distmin (enspoint a) {
 }
 
 bool tousalignes (enspoint a) {
-	float aire =0;
 	if(a.nb < 3 ) return 1;
 	for(int i=2;i<a.nb;i++){
 		if((a.p[0].x*(a.p[1].y-a.p[i].y) + a.p[1].x*(a.p[i].y-a.p[0].y) + a.p[i].x*(a.p[0].y-a.p[1].y))!=0) return 0;
@@ -144,12 +143,27 @@ enspoint contour (enspoint a) {
 	return retEsmbl;
 }
 
+bool absord (enspoint a) {
+	for(int i=1;i<a.nb;i++){
+		cout<<"loop1\n";
+		if(a.p[i].x<a.p[i-1].x){
+			for(int j=a.nb-1;j>0;j--){
+				cout<<"loop2\n";
+				if(a.p[j].x>a.p[j-1].x){
+					return 0;
+				}
+			}
+			return 1;
+		}
+	}
+	return 1;
+}
+
 int main () {
 	enspoint A;
 	saisieEnsemble(A);
 	reduit(A);
 	afficheEnsemble(A);
-	cout<<"Encadre par:\n";
-	afficheEnsemble(contour(A));
+	cout << absord(A)<<endl;
 	return 0;
 }
