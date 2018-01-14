@@ -115,12 +115,41 @@ bool tousalignes (enspoint a) {
 	return (aire==0);
 }
 
+float min (float a, float b) {
+	if(a<b) return a;
+	return b;
+}
+
+float max(float a,float b){
+	if (a>b) return a;
+	return b;
+}
+
+enspoint contour (enspoint a) {
+	enspoint retEsmbl;
+	retEsmbl.nb = 4;
+
+	float minx=a.p[0].x, maxx=a.p[0].x, miny=a.p[0].y, maxy=a.p[0].y;
+	for(int i=1;i<a.nb;i++){
+		minx = min(minx, a.p[i].x);
+		miny = min(miny, a.p[i].y);
+		maxx = max(maxx, a.p[i].x);
+		maxy = max(maxy, a.p[i].y);
+	}
+	retEsmbl.p[0].x = minx; retEsmbl.p[0].y = miny;
+	retEsmbl.p[1].x = minx; retEsmbl.p[1].y = maxy;
+	retEsmbl.p[2].x = maxx; retEsmbl.p[2].y = maxy;
+	retEsmbl.p[3].x = maxx; retEsmbl.p[3].y = miny;
+
+	return retEsmbl;
+}
+
 int main () {
 	enspoint A;
 	saisieEnsemble(A);
 	reduit(A);
 	afficheEnsemble(A);
-	cout << "Tous Aligne? "<<tousalignes(A)<<endl;
-
+	cout<<"Encadre par:\n";
+	afficheEnsemble(contour(A));
 	return 0;
 }
