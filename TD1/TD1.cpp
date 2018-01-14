@@ -110,9 +110,9 @@ bool tousalignes (enspoint a) {
 	float aire =0;
 	if(a.nb < 3 ) return 1;
 	for(int i=2;i<a.nb;i++){
-		aire += (a.p[0].x*(a.p[1].y-a.p[i].y) + a.p[1].x*(a.p[i].y-a.p[0].y) + a.p[i].x*(a.p[0].y-a.p[1].y));
+		if((a.p[0].x*(a.p[1].y-a.p[i].y) + a.p[1].x*(a.p[i].y-a.p[0].y) + a.p[i].x*(a.p[0].y-a.p[1].y))!=0) return 0;
 	}
-	return (aire==0);
+	return 1;
 }
 
 float min (float a, float b) {
