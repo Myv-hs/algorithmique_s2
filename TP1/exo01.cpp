@@ -47,11 +47,8 @@ fraction inv (fraction a) {
 
 //7
 fraction sustr (fraction a, fraction b) {
-	fraction temp, out;
-	temp.n = a.n*b.d; temp.d = a.d*b.d;
-	out.n = b.n*a.d; out.d = b.d*a.d;
-	out.n -= temp.n;
-	return out;
+	fraction temp = inv(b);
+	return add(a,temp);
 }
 
 fraction div (fraction a, fraction b) {
