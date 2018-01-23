@@ -60,6 +60,15 @@ fraction div (fraction a, fraction b) {
 	return mult(a,temp;)
 }
 
+//8
+int pgcd (int a, int b){
+	if(a<0) return pgcd(-a,b);
+	if(b<0) return pgcd(a,-b);
+	if(a<b) return pgcd(b,a);
+	if(b==0) return a;
+	return pgcd(b,b%a);
+}
+
 int main () {
 	
 	return 0;
