@@ -35,7 +35,7 @@ fraction add (fraction a, fraction b) {
 //6
 fraction opp (fraction a) {
 	fraction out = a;
-	out.n = -a;
+	out.n = -a.n;
 	return out;
 }
 
@@ -54,7 +54,7 @@ fraction sustr (fraction a, fraction b) {
 fraction div (fraction a, fraction b) {
 	fraction temp;
 	temp = inv(b);
-	return mult(a,temp;)
+	return mult(a,temp);
 }
 
 //8
@@ -63,10 +63,17 @@ int pgcd (int a, int b){
 	if(b<0) return pgcd(a,-b);
 	if(a<b) return pgcd(b,a);
 	if(b==0) return a;
-	return pgcd(b,b%a);
+	return pgcd(b,a%b);
+}
+
+//9
+fraction simpl (fraction a) {
+	fraction out;
+	int p = pgcd(a.n,a.d);
+	out.n = a.n/p; out.d = a.d/p;
+	return out;
 }
 
 int main () {
-	
-	return 0;
+
 }
