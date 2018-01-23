@@ -157,11 +157,34 @@ bool absord (enspoint a) {
 	return 1;
 }
 
+float image (enspoint a, float x){
+	float xl, xr, xratio, ylrdelta, ydelta, y;
+	if(!absord(a)) return 0;
+	for(int i=0;i<a.nb;i++){
+		if(x==a.p[i].x) return a.p[i].y;
+		if(abs(x)>abs(a.p[i].x)) {
+			xl=i;
+		} else {
+			xr=i;
+			break;
+		}
+	}
+	xratio = (x-a.p[xl].x)/(a.p[xr].x-a.p[xl].x);
+	ylrdelta = a.p[xr].y-a.p[xl].y;
+	ydelta = xratio*ylrdelta;
+	y=a.p[xl].y + ydelta;
+	return y;
+}
+
 int main () {
 	enspoint A;
+	float x,y;
 	saisieEnsemble(A);
 	reduit(A);
 	afficheEnsemble(A);
-	cout << absord(A)<<endl;
+	cout << tousalignes(A);
+	cin >> x;
+	y = image(A,x);
+	cout << "L\'image de "<<x<<" par la fonction affine par morceaux continue representee par l'ensemble saisie:\nf("<<x<<")="<<y<<endl; 
 	return 0;
 }
