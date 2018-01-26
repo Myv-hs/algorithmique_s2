@@ -158,7 +158,7 @@ int absord (enspoint a) {
 }
 
 float image (enspoint a, float x){
-	float xl, xr, xratio, ylrdelta, ydelta, y;
+	float y, xl, xr, xratio, ylrdelta, ydelta;//pente;
 	int c = absord(a);
 	if(!c) return 0;
 	
@@ -186,6 +186,8 @@ float image (enspoint a, float x){
 	} while(gendarmes);
 
 	//cout<<a.p[xl].x<<" < "<<x<<" < "<<a.p[xr].x<<endl;
+	/*pente = (a.p[xr].y-a.p[xl].y)/(a.p[xr].x-a.p[xl].x);
+	y = x*pente;*/
 	xratio = (x-a.p[xl].x)/(a.p[xr].x-a.p[xl].x);
 	ylrdelta = a.p[xr].y-a.p[xl].y;
 	ydelta = xratio*ylrdelta;
