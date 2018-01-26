@@ -179,13 +179,12 @@ float image (enspoint a, float x){
 		} else {
 			xr=i;
 			gendarmes = 0;
-			break;
 		}
 
 		i+=c;
 	} while(gendarmes);
 
-	//cout<<a.p[xl].x<<" < "<<x<<" < "<<a.p[xr].x<<endl;
+	cout<<a.p[xl].x<<" < "<<x<<" < "<<a.p[xr].x<<endl;
 	/*pente = (a.p[xr].y-a.p[xl].y)/(a.p[xr].x-a.p[xl].x);
 	y = x*pente;*/
 	xratio = (x-a.p[xl].x)/(a.p[xr].x-a.p[xl].x);
