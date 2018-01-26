@@ -162,10 +162,16 @@ float image (enspoint a, float x){
 	int c = absord(a);
 	if(!c) return 0;
 	
-	int i; bool gendarmes = 1;
+	int i, gendarmes = 0;
 	if(c==1) i = 0;
 	else if (c==-1) i=a.nb-1;
-	while(gendarmes) {
+
+	do {
+		gendarmes++;
+		if(gendarmes>a.nb) {
+			cout<<"x pas entre "<<a.p[0].x<<" et "<<a.p[a.nb-1].x<<endl;
+			return 0;
+		}
 		//cout<<" :: x:"<<x<<" x["<<i<<"]:"<<a.p[i].x<<endl;
 		if(x==a.p[i].x)return a.p[i].y;
 		if(x>a.p[i].x) {
@@ -173,9 +179,11 @@ float image (enspoint a, float x){
 		} else {
 			xr=i;
 			gendarmes = 0;
+			break;
 		}
+
 		i+=c;
-	}
+	} while(gendarmes);
 
 	//cout<<a.p[xl].x<<" < "<<x<<" < "<<a.p[xr].x<<endl;
 	xratio = (x-a.p[xl].x)/(a.p[xr].x-a.p[xl].x);
