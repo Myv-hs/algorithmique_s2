@@ -143,7 +143,7 @@ enspoint contour (enspoint a) {
 	return retEsmbl;
 }
 
-bool absord (enspoint a) {
+int absord (enspoint a) {
 	for(int i=1;i<a.nb;i++){
 		if(a.p[i].x<a.p[i-1].x){
 			for(int j=a.nb-1;j>0;j--){
@@ -151,7 +151,7 @@ bool absord (enspoint a) {
 					return 0;
 				}
 			}
-			return 1;
+			return -1;
 		}
 	}
 	return 1;
@@ -159,16 +159,24 @@ bool absord (enspoint a) {
 
 float image (enspoint a, float x){
 	float xl, xr, xratio, ylrdelta, ydelta, y;
-	if(!absord(a)) return 0;
-	for(int i=0;i<a.nb;i++){
-		if(x==a.p[i].x) return a.p[i].y;
-		if(abs(x)>abs(a.p[i].x)) {
+	int c = absord(a);
+	if(!c) return 0;
+	
+	int i; bool gendarmes = 1;
+	if(c==1) i = 0;
+	else if (c==-1) i=a.nb-1;
+	while(gendarmes) {
+		cout<<" :: x:"<<x<<" x["<<i<<"]:"<<a.p[i].x<<endl;
+		if(x==a.p[i].x)return a.p[i].y;
+		if(x>a.p[i].x) {
 			xl=i;
 		} else {
 			xr=i;
-			break;
+			gendarmes = 0;
 		}
+		i+=c;
 	}
+	cout<<a.p[xl].x<<" < "<<x<<" < "<<a.p[xr].x<<endl;
 	xratio = (x-a.p[xl].x)/(a.p[xr].x-a.p[xl].x);
 	ylrdelta = a.p[xr].y-a.p[xl].y;
 	ydelta = xratio*ylrdelta;
@@ -182,7 +190,7 @@ int main () {
 	saisieEnsemble(A);
 	reduit(A);
 	afficheEnsemble(A);
-	cout << tousalignes(A);
+	cout << tousalignes(A)<<endl;
 	cin >> x;
 	y = image(A,x);
 	cout << "L\'image de "<<x<<" par la fonction affine par morceaux continue representee par l'ensemble saisie:\nf("<<x<<")="<<y<<endl; 
