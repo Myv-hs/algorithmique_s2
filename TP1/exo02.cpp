@@ -26,6 +26,9 @@ void init (enslecteur &a) {
 	a.n = 0;
 }
 
+/* Les deux ajoutes fonctionnent,
+apple ajoute(a_cet_ensemble) pour saisir un nouveau lecteur
+apple ajoute(a_cet_ensemble, ce_lecteur) si t'as deja tout */
 void ajoute (enslecteur &a) {
 	saisie(a.l[a.n++]);
 }
@@ -108,20 +111,15 @@ void emprunts (biblio a) {
 int main () {
 	biblio CU;
 	CU.L.n = 5;
-	CU.L.l[0].titre = "Harry Potter"; CU.L.l[0].auteur = "JK Rowling"; CU.L.l[0].ISBN=9; CU.L.l[0].dispo=1; CU.L.l[0].lastUser=0;
-	CU.L.l[1].titre = "A Song of Ice & Fire"; CU.L.l[1].auteur = "GRR Martin"; CU.L.l[1].ISBN=21; CU.L.l[1].dispo=1; CU.L.l[1].lastUser=0;
-	CU.L.l[2].titre = "Fifty Shades of Grey"; CU.L.l[2].auteur = "ur mom"; CU.L.l[2].ISBN=12; CU.L.l[2].dispo=1; CU.L.l[2].lastUser=0;
-	CU.L.l[3].titre = "Wikipedia"; CU.L.l[3].auteur = "my mom"; CU.L.l[3].ISBN=1; CU.L.l[3].dispo=1; CU.L.l[3].lastUser=0;
-	CU.L.l[4].titre = "Omniverse"; CU.L.l[4].auteur = "Francis of the Filth"; CU.L.l[4].ISBN=420; CU.L.l[4].dispo=1; CU.L.l[4].lastUser=0;
+	CU.L.l[0].titre = "Harry Potter"; CU.L.l[0].auteur = "JK Rowling"; CU.L.l[0].ISBN=9856; CU.L.l[0].dispo=1; CU.L.l[0].lastUser=0;
+	CU.L.l[1].titre = "A Song of Ice & Fire"; CU.L.l[1].auteur = "GRR Martin"; CU.L.l[1].ISBN=2145; CU.L.l[1].dispo=1; CU.L.l[1].lastUser=0;
+	CU.L.l[2].titre = "Fifty Shades of Grey"; CU.L.l[2].auteur = "ur mom"; CU.L.l[2].ISBN=1233; CU.L.l[2].dispo=1; CU.L.l[2].lastUser=0;
+	CU.L.l[3].titre = "Wikipedia"; CU.L.l[3].auteur = "my mom"; CU.L.l[3].ISBN=1526; CU.L.l[3].dispo=1; CU.L.l[3].lastUser=0;
+	CU.L.l[4].titre = "Omniverse"; CU.L.l[4].auteur = "Francis of the Filth"; CU.L.l[4].ISBN=4200; CU.L.l[4].dispo=1; CU.L.l[4].lastUser=0;
 
 	CU.U.n = 2;
-	CU.U.l[0].ID = 27; CU.U.l[0].nom = "Coyle"; CU.U.l[0].prenom = "Matthew";
-	CU.U.l[1].ID = 9; CU.U.l[0].nom = "leFranc"; CU.U.l[0].prenom = "Cedric";
-
-
-	//test emprunts
-	emprunter(CU, 21, 27); emprunter(CU, 420, 27); emprunter(CU, 9, 9);
-	emprunts(CU);
+	CU.U.l[0].ID = 2702; CU.U.l[0].nom = "Coyle"; CU.U.l[0].prenom = "Matthew";
+	CU.U.l[1].ID = 9231; CU.U.l[0].nom = "leFranc"; CU.U.l[0].prenom = "Cedric";
 
 	return 0;
 }
