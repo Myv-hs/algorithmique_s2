@@ -72,37 +72,30 @@ struct biblio {
 
 void emprunter (biblio &a) {}
 
-void afficheLivre (livre a) {}
+void afficheLivre (livre a) {
+	cout << a.titre <<"\npar "<< a.auteur<<"\nISBN "<<a.ISBN<<" :: dispo? "<<a.dispo<<" :: Emprunte precedament par "<<a.lastUser<<endl;
+}
 
 void emprunts (biblio a) {
 	for(int i=0;i<a.L.n;i++){
 		if(!a.L.l[i].dispo) {
 			afficheLivre(a.L.l[i]);
-			cout << rechercheNom(a.L.l[i].lastUser) << endl;
 		}
 	}
 }
 
 int main () {
-	lecteur moi;
+	biblio Myv;
+	CU.L.n = 5;
+	CU.L.l[0].titre = "Harry Potter"; CU.L.l[0].auteur = "JK Rowling"; CU.L.l[0].ISBN=9; CU.L.l[0].dispo=1;
+	CU.L.l[1].titre = "A Song of Ice & Fire"; CU.L.l[1].auteur = "GRR Martin"; CU.L.l[1].ISBN=21; CU.L.l[1].dispo=1;
+	CU.L.l[2].titre = "How to Cook"; CU.L.l[2].auteur = "ur mom"; CU.L.l[2].ISBN=12; CU.L.l[2].dispo=1;
+	CU.L.l[3].titre = "Wikipedia"; CU.L.l[3].auteur = "my mom"; CU.L.l[3].ISBN=1; CU.L.l[3].dispo=1;
+	CU.L.l[4].titre = "Omniverse"; CU.L.l[4].auteur = "Francis of the Filth"; CU.L.l[4].ISBN=420; CU.L.l[4].dispo=1;
 
-	livre hp; hp.titre = "Harry Potter"; hp.auteur = "JK Rowling"; hp.ISBN=9; hp.dispo=1;
-	livre got; got.titre = "A Song of Ice & Fire"; got.auteur = "GRR Martin"; got.ISBN=21; got.dispo=1;
-	livre hc; hc.titre = "How to Cook"; hc.auteur = "ur mom"; hc.ISBN=12; hc.dispo=1;
-	livre wk; wk.titre = "Wikipedia"; wk.auteur = "my mom"; wk.ISBN=1; wk.dispo=1;
-	livre ff; ff.titre = "Omniverse"; ff.auteur = "Francis of the Filth"; ff.ISBN=420; ff.dispo=1;
-
-	cout << "saisie\n";
-	saisie(moi);
-	cout << "cree classe\n";
-	enslecteur classe;
-	cout << "init classe\n";
-	init(classe);
-	cout << "saisie ++classe\n";
-	ajoute(classe);
-	cout << "classe+moi\n";	
-	ajoute(classe, moi);
-	afficheTout(classe);
+	CU.U.n = 2;
+	CU.U.l[0].ID = 0; CU.U.l[0].nom = "Coyle"; CU.U.l[0].prenom = "Matthew";
+	CU.U.l[0].ID = 0; CU.U.l[0].nom = "Coyle"; CU.U.l[0].prenom = "Matthew";
 
 	return 0;
 }
