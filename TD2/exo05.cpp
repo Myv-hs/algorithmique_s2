@@ -15,7 +15,7 @@ void saisieRec (tab &a, int n) {
 	}	
 }
 
-bool isin (int x, tab a) {
-	if(tab.length == 0) return 0;
-	return (x==tab[0]) + isin(x)
+bool isin (int x, tab a, int n) {
+	if(n == 0) return 0;
+	return (x==tab[n-1]) + isin(x, a, n-1);
 }
