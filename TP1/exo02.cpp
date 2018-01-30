@@ -85,12 +85,12 @@ int userIndex(biblio a, int b) {
 }
 
 void emprunter (biblio &a, int b, int c) {
-	int book = bookIndex(b), user = userIndex(c);
+	int book = bookIndex(a,b), user = userIndex(a,c);
 	if(book<0 || user<0 ) return;
 	if(!a.L.l[book].dispo) return;
 
 	a.L.l[book].dispo=0;
-	a.L.l[book].lastUser=a.U.l[user].nom;
+	a.L.l[book].lastUser=a.U.l[user].ID;
 }
 
 void afficheLivre (livre a) {
@@ -106,17 +106,22 @@ void emprunts (biblio a) {
 }
 
 int main () {
-	biblio Myv;
+	biblio CU;
 	CU.L.n = 5;
-	CU.L.l[0].titre = "Harry Potter"; CU.L.l[0].auteur = "JK Rowling"; CU.L.l[0].ISBN=9; CU.L.l[0].dispo=1; CU.L.l[0].lastUser="NEW";
-	CU.L.l[1].titre = "A Song of Ice & Fire"; CU.L.l[1].auteur = "GRR Martin"; CU.L.l[1].ISBN=21; CU.L.l[1].dispo=1; CU.L.l[1].lastUser="NEW";
-	CU.L.l[2].titre = "Fifty Shades of Grey"; CU.L.l[2].auteur = "ur mom"; CU.L.l[2].ISBN=12; CU.L.l[2].dispo=1; CU.L.l[2].lastUser="NEW";
-	CU.L.l[3].titre = "Wikipedia"; CU.L.l[3].auteur = "my mom"; CU.L.l[3].ISBN=1; CU.L.l[3].dispo=1; CU.L.l[3].lastUser="NEW";
-	CU.L.l[4].titre = "Omniverse"; CU.L.l[4].auteur = "Francis of the Filth"; CU.L.l[4].ISBN=420; CU.L.l[4].dispo=1; CU.L.l[4].lastUser="NEW";
+	CU.L.l[0].titre = "Harry Potter"; CU.L.l[0].auteur = "JK Rowling"; CU.L.l[0].ISBN=9; CU.L.l[0].dispo=1; CU.L.l[0].lastUser=0;
+	CU.L.l[1].titre = "A Song of Ice & Fire"; CU.L.l[1].auteur = "GRR Martin"; CU.L.l[1].ISBN=21; CU.L.l[1].dispo=1; CU.L.l[1].lastUser=0;
+	CU.L.l[2].titre = "Fifty Shades of Grey"; CU.L.l[2].auteur = "ur mom"; CU.L.l[2].ISBN=12; CU.L.l[2].dispo=1; CU.L.l[2].lastUser=0;
+	CU.L.l[3].titre = "Wikipedia"; CU.L.l[3].auteur = "my mom"; CU.L.l[3].ISBN=1; CU.L.l[3].dispo=1; CU.L.l[3].lastUser=0;
+	CU.L.l[4].titre = "Omniverse"; CU.L.l[4].auteur = "Francis of the Filth"; CU.L.l[4].ISBN=420; CU.L.l[4].dispo=1; CU.L.l[4].lastUser=0;
 
 	CU.U.n = 2;
-	CU.U.l[0].ID = 0; CU.U.l[0].nom = "Coyle"; CU.U.l[0].prenom = "Matthew";
-	CU.U.l[0].ID = 0; CU.U.l[0].nom = "Coyle"; CU.U.l[0].prenom = "Matthew";
+	CU.U.l[0].ID = 27; CU.U.l[0].nom = "Coyle"; CU.U.l[0].prenom = "Matthew";
+	CU.U.l[1].ID = 9; CU.U.l[0].nom = "leFranc"; CU.U.l[0].prenom = "Cedric";
+
+
+	//test emprunts
+	emprunter(CU, 21, 27); emprunter(CU, 420, 27); emprunter(CU, 9, 9);
+	emprunts(CU);
 
 	return 0;
 }
