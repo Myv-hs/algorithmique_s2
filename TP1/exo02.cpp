@@ -85,7 +85,13 @@ void emprunts (biblio a) {
 
 int main () {
 	lecteur moi;
-	
+
+	livre hp; hp.titre = "Harry Potter"; hp.auteur = "JK Rowling"; hp.ISBN=9; hp.dispo=1;
+	livre got; got.titre = "A Song of Ice & Fire"; got.auteur = "GRR Martin"; got.ISBN=21; got.dispo=1;
+	livre hc; hc.titre = "How to Cook"; hc.auteur = "ur mom"; hc.ISBN=12; hc.dispo=1;
+	livre wk; wk.titre = "Wikipedia"; wk.auteur = "my mom"; wk.ISBN=1; wk.dispo=1;
+	livre ff; ff.titre = "Omniverse"; ff.auteur = "Francis of the Filth"; ff.ISBN=420; ff.dispo=1;
+
 	cout << "saisie\n";
 	saisie(moi);
 	cout << "cree classe\n";
