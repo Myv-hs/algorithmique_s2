@@ -20,3 +20,9 @@ bool isin (int x, tab a, int n) {
 	if(n == 0) return 0;
 	return (x==tab[n-1]) || isin(x, a, n-1);
 }
+
+int indexOf(int x, tab a, int n) {
+	if(n==0) return -1;
+	if(x==a[n-1]) return n-1;
+	return infoxOf(x,a,n-1);
+}
