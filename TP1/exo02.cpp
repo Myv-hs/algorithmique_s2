@@ -70,8 +70,27 @@ struct biblio {
 	enslecteur U;
 };
 
+int bookIndex(biblio a, int b) {
+	for(int i=0;i<a.L.n;i++){
+		if(a.L.l[i].ISBN==b) return i;		
+	}
+	return -1;
+}
+
+int userIndex(biblio a, int b) {
+	for(int i=0;i<a.L.n;i++){
+		if(a.U.l[i].ID==b) return i;		
+	}
+	return -1;
+}
+
 void emprunter (biblio &a, int b, int c) {
-	
+	int book = bookIndex(b), user = userIndex(c);
+	if(book<0 || user<0 ) return;
+	if(!a.L.l[book].dispo) return;
+
+	a.L.l[book].dispo=0;
+	a.L.l[book].lastUser=a.U.l[user].nom;
 }
 
 void afficheLivre (livre a) {
