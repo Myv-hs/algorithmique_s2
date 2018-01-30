@@ -5,5 +5,7 @@ int somme (int a) {
 }
 
 int supersomme (int a) {
-	
+	int b = somme(a);
+	if(!b<10) return b;
+	return somme(b);
 }
