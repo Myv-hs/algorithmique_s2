@@ -28,7 +28,7 @@ fraction simpl (fraction a) {
 	out.n = a.n/p; out.d = a.d/p;
 	if(out.d<0) {
 		out.d *=-1;
-		out.m *=-1;
+		out.n *=-1;
 	}
 	return out;
 }
@@ -47,7 +47,7 @@ void affichage (fraction a) {
 fraction mult (fraction a, fraction b) {
 	fraction out;
 	out.n = a.n*b.n; out.d = b.d*b.d;
-	return simple(out);
+	return simpl(out);
 }
 
 //5
@@ -97,18 +97,40 @@ nbmixite mixte (fraction a) {
 	return out;
 }
 
+//12
 fraction demixte (nbmixite a) {
 	fraction out = a.frac;
-	out.n *= a.signe;
+	//out.n *= a.signe;
 	return out;
 }
 
 nbmixite addM (nbmixite a, nbmixite b) {
-	fraction A = demixte(a), B = demixte(b);
-	return mixte(add(A,B));
+	return mixte(add(demixte(a),demixte(b)));
+}
+
+nbmixite addMb (nbmixite a, nbmixite b) {
+	nbmixite out;
+	if(a.signe==b.signe) out.frac.n = a.frac.n*b.frac.d + b.frac.n*a.frac.d;
+	else out.frac.n = a.frac.n*b.frac.d - b.frac.n*a.frac.d;
+	out.frac.d = a.frac.d*b.frac.d;
+	out.frac = simpl(out.frac);
+	return out;
 }
 
 int main () {
+	fraction A, B;
+	A.n = -3; A.d = 2;
+	B.n = 1; B.d = 2;
+
+	nbmixite Am, Bm, X, Y;
+	Am = mixte(A); Bm = mixte(B);
+	affichage(Am.frac); affichage(Bm.frac);
+	affichage(demixte(Am)); affichage(demixte(Bm));
+
+	X = addM(Am,Bm); Y = addMb(Am,Bm);
+
+	affichage(X.frac); affichage(Y.frac);
+
 
 	return 0;
 }
