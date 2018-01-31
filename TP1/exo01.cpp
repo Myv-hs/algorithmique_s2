@@ -97,8 +97,15 @@ nbmixite mixte (fraction a) {
 	return out;
 }
 
-nbmixite addM (nbmixite a, nbmixite b) {
+fraction demixte (nbmixite a) {
+	fraction out = a.frac;
+	out.n *= a.signe;
+	return out;
+}
 
+nbmixite addM (nbmixite a, nbmixite b) {
+	fraction A = demixte(a), B = demixte(b);
+	return mixte(add(A,B));
 }
 
 int main () {
