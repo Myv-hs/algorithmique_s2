@@ -24,5 +24,22 @@ bool isin (int x, tab a, int n) {
 int indexOf(int x, tab a, int n) {
 	if(n==0) return -1;
 	if(x==a[n-1]) return n-1;
-	return infoxOf(x,a,n-1);
+	return indexOf(x,a,n-1);
+}
+
+bool identiques (tab t1, tab t2, int n){
+	if(n==0) return 1;
+	if(t1[n-1] != t2[n-1]) return false;
+	return identiques(t1,t2,n-1);
+}
+
+bool tabloMemeVal (tab a, tab &b, int n) {
+	if(n==0) return 1;
+	int indexAinB = indexOf(a[n-1], b, n);
+	if(indexAinB>=0){
+		int swp = b[n-1];
+		b[n-1] = b[indexAinB];
+		b[indexAinB] = swp;
+	} else return 0;
+	return tabloMemeVal(a, b, n-1);
 }
