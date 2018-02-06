@@ -33,13 +33,16 @@ bool identiques (tab t1, tab t2, int n){
 	return identiques(t1,t2,n-1);
 }
 
-bool tabloMemeVal (tab a, tab &b, int n) {
+void swap(int &a, int &b){
+	int c = a;
+	a = b;
+	b = c;
+}
+
+bool tabloMemeVal (tab a, tab b, int n) {
 	if(n==0) return 1;
 	int indexAinB = indexOf(a[n-1], b, n);
-	if(indexAinB>=0){
-		int swp = b[n-1];
-		b[n-1] = b[indexAinB];
-		b[indexAinB] = swp;
-	} else return 0;
+	if(indexAinB>=0) swap(b[n-1],b[indexAinB]);
+	else return 0;
 	return tabloMemeVal(a, b, n-1);
 }
