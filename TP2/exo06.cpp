@@ -25,9 +25,16 @@ bool palindrome_correct (string a){
 	return (a[0]==a[a.length()-1])&&palindrome_correct(sub_string(a,1,a.length()-2));
 }
 
+//3
+int occurance_lettre (string a, char b) {
+	if(a.length()==0) return 0;
+	return (a[0]==b)+occurance_lettre(sub_string(a,1,a.length()-1),b);
+}
+
 int main () {
 	string a; cin >> a;
 	cout << palindrome_correct(a) <<endl;
+	cout << occurance_lettre(a,'a') <<endl;
 
 	return 0;
 }
