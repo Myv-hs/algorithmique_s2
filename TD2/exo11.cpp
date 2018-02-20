@@ -40,6 +40,12 @@ void tablo_int_maxtri (tablo_int &T, int t){
 	tablo_int_maxtri(T,t-1);
 }
 
+//d
+bool tablo_int_ordre_plus (tablo_int T, int t){
+	if(t<=1) return 1;
+	return (T[t-1]>=T[t-2])&&tablo_int_ordre_plus(T,t-1);
+}
+
 int main(){
 	tablo_int A = {0,22,1,44,-7,19};
 	std::cout << tablo_int_max(A,6) <<std::endl;
