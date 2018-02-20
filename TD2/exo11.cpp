@@ -34,11 +34,9 @@ int plus_petit_indice_du_max_rec (tablo_int T, int n){ //Prof
 void tablo_int_maxtri (tablo_int &T, int t){
 	if(t<=0) return;
 	int minimax = plus_petit_indice_du_max_rec(T,t);
-	if(minimax != t-1) {
-		int swp = T[t-1];
-		T[t-1] = T[minimax];
-		T[minimax] = swp;
-	}
+	int swp = T[t-1];
+	T[t-1] = T[minimax];
+	T[minimax] = swp;
 	tablo_int_maxtri(T,t-1);
 }
 
