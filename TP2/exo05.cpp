@@ -20,7 +20,10 @@ float racine_dicho (float x, float e, float a, float b) {
 }*/
 
 void racine (float x, float e){
-	cout<<"Par methode dichometrique on trove sqrt(x) = "<<racine_dicho(x, e, 0, x)<<endl;
+	float T;
+	if(x<=1) T = 1;
+	else T=x;
+	cout<<"Par methode dichometrique on trove sqrt(x) = "<<racine_dicho(x, e, 0, T)<<endl;
 }
 
 int main () {
