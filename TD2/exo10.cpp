@@ -19,5 +19,6 @@ bool impaire (int a){
 int main (){
 	int a; std::cin >>a;
 	if(paire(a)) std::cout <<a<<" est paire\n";
+	else std::cout <<a<<" n'est pas paire\n";
 	return 0;
 }
