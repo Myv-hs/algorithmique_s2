@@ -1,8 +1,9 @@
 #include <array>
 #include <iostream>
+using namespace std;
 
 const unsigned int BUFF = 512;
-using tablo_int = std::array<int,BUFF>;
+using tablo_int = array<int,BUFF>;
 
 //a
 int tablo_int_max (tablo_int T, int t) {
@@ -46,13 +47,21 @@ bool tablo_int_ordre_plus (tablo_int T, int t){
 	return (T[t-1]>=T[t-2])&&tablo_int_ordre_plus(T,t-1);
 }
 
+bool tablo_int_contiens (tablo_int T, int a, int b, int x){
+	int c = (a+b)/2;
+	if(T[c]==x) return 1;
+	if(c==a || c==b) return 0;
+	if(T[c]<=x) return tablo_int_contiens(T,c,b,x);
+	return tablo_int_contiens(T,a,c,x);
+}
+
 int main(){
-	tablo_int A = {0,22,1,44,-7,19};
-	std::cout << tablo_int_max(A,6) <<std::endl;
-	std::cout << tablo_int_max_index(A,6,tablo_int_max(A,6)) <<std::endl;
-	std::cout << plus_petit_indice_du_max_rec(A,6) <<std::endl;
-	tablo_int_maxtri(A,6);
-	std::cout << plus_petit_indice_du_max_rec(A,6) <<std::endl;
+	tablo_int A = {22, 99, -32, 66, 2};
+	int As = 5;
+	cout << tablo_int_max(A,As) <<endl;
+	tablo_int_maxtri(A,As);
+	cout << tablo_int_ordre_plus(A,As)<<endl;
+	cout << tablo_int_contiens(A,0,As,22)<<endl;
 
 
 	return 0;
