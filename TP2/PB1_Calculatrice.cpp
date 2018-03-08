@@ -12,6 +12,12 @@ int evalue (string e);
 bool valide (string e);
 void saisie ();
 
+//Codes Characteres:
+const unsigned int PLUS = 43, MOINS = 45;
+const unsigned int MULT = 42, DIVI = 47, MOD = 37;
+const unsigned int PARL = 40, PARR = 41;
+const unsigned int NUM0 = 48, NUM9 = 57;
+
 int main () {
 	return 0;
 }
@@ -22,13 +28,11 @@ string extrait (string e, int pos, int lg) {
 }
 
 bool estchiffre (char c) {
-	const unsigned int char0 = 48;
-	const unsigned int char9 = 57; 
-	return (c >= char0 && c <= char9);
+	return (c >= NUM0 && c <= NUM9);
 }
 
 bool estsigne (char c) {
-	bool sg_pl = (c==43), sg_mn = (c==45), sg_fx = (c==42), sg_dv = (c==47), sg_md = (c==37); 
-	bool prt_l = (c==40), prt_r = (c==41);
-	return (sg_pl or sg_mn or sg_fx or sg_dv or sg_md or prt_l or prt_r);
+	return (c==PLUS or c==MOINS or c==MULT or c==DIVI or c==MOD or c==PARL or c==PARR);
 }
+
+int parent_ouvertes
