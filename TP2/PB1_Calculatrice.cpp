@@ -57,3 +57,11 @@ int parent_ouvertes (string e) {
 	else if (e[0]==PARR) out = -1; 
 	return out+parent_ouvertes(extrait(e,1,e.length()-1));
 }
+
+int calcule (int g, char signe, int d) {
+	if(signe==PLUS) return g+d;
+	if(signe==MOINS) return g-d;
+	if(signe==MULT) return g*d;
+	if(signe==DIVI) return g/d;
+	if(signe==MOD) return g%d;
+}
