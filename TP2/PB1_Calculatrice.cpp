@@ -15,3 +15,8 @@ void saisie ();
 int main () {
 	return 0;
 }
+
+string extrait (string e, int pos, int lg) {
+	if(lg<=0) return "";
+	return e[pos-1]+extrait(e,pos+1,lg-1);
+}
