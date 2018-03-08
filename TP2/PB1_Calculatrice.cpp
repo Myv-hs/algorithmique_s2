@@ -1,3 +1,4 @@
+#include <iostream>
 using namespace std;
 
 string extrait (string e, int pos, int lg);
@@ -19,12 +20,14 @@ const unsigned int PARL = 40, PARR = 41;
 const unsigned int NUM0 = 48, NUM9 = 57;
 
 int main () {
+	string a = "()(((";
+	cout << parent_ouvertes(a);
 	return 0;
 }
 
 string extrait (string e, int pos, int lg) {
 	if(lg<=0) return "";
-	return e[pos-1]+extrait(e,pos+1,lg-1);
+	return e[pos]+extrait(e,pos+1,lg-1);
 }
 
 bool estchiffre (char c) {
@@ -35,4 +38,10 @@ bool estsigne (char c) {
 	return (c==PLUS or c==MOINS or c==MULT or c==DIVI or c==MOD or c==PARL or c==PARR);
 }
 
-int parent_ouvertes
+int parent_ouvertes (string e) {
+	if (e.length()<=0) return 0;
+	int out=0;
+	if(e[0]==PARL) out = 1;
+	else if (e[0]==PARR) out = -1; 
+	return out+parent_ouvertes(extrait(e,1,e.length()-1));
+}
