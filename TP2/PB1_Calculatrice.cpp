@@ -20,14 +20,26 @@ const unsigned int PARL = 40, PARR = 41;
 const unsigned int NUM0 = 48, NUM9 = 57;
 
 int main () {
-	string a = "()(((";
-	cout << parent_ouvertes(a);
+	string a = "-13";
+	char b = '7';
+	cout << (convertit(a)+num(b))*-1;
 	return 0;
 }
 
 string extrait (string e, int pos, int lg) {
 	if(lg<=0) return "";
 	return e[pos]+extrait(e,pos+1,lg-1);
+}
+
+int num (char c) {
+	return c-NUM0;
+}
+
+int convertit (string n){
+	if(n.length()==0) return 0;
+	if(n[0]==MOINS) return convertit(extrait(n,1,n.length()-1))*-1;
+	if(n[0]==PLUS) return convertit(extrait(n,1,n.length()-1));
+	return num(n[n.length()-1])+10*convertit(extrait(n,0,n.length()-1));
 }
 
 bool estchiffre (char c) {
