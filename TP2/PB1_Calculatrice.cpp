@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+//Prototypes
 string extrait (string e, int pos, int lg);
 bool estsigne (char c);
 bool estchiffre (char c);
@@ -20,13 +21,13 @@ const unsigned int PARL = 40, PARR = 41;
 const unsigned int NUM0 = 48, NUM9 = 57;
 
 int main () {
-	string a = "-13";
-	char b = '7';
-	cout << (convertit(a)+num(b))*-1;
+	string a = "(13+1)/(4+5)";
+	cout << evalue(a) <<endl;
 	return 0;
 }
 
 string extrait (string e, int pos, int lg) {
+	cout << "on extrait de: "<<e<<" "<<lg<<" chars apartir de la pos: "<<pos<<endl;
 	if(lg<=0) return "";
 	return e[pos]+extrait(e,pos+1,lg-1);
 }
@@ -47,7 +48,7 @@ bool estchiffre (char c) {
 }
 
 bool estsigne (char c) {
-	return (c==PLUS or c==MOINS or c==MULT or c==DIVI or c==MOD or c==PARL or c==PARR);
+	return (c==PLUS or c==MOINS or c==MULT or c==DIVI or c==MOD);
 }
 
 int parent_ouvertes (string e) {
@@ -64,4 +65,32 @@ int calcule (int g, char signe, int d) {
 	if(signe==MULT) return g*d;
 	if(signe==DIVI) return g/d;
 	if(signe==MOD) return g%d;
+}
+
+int cherchesigne (string e, int pos) {
+	if(pos>=e.length()) return -1;
+	int npos = cherchesigne(e, pos+1);
+	
+	if(!estsigne(e[pos])) return npos;
+	if(npos<0 && !estsigne(e[pos])) return -1;
+	else if(npos<0 && estsigne(e[pos])) return pos;
+
+	if(!(e[pos]==MULT || e[pos]==DIVI || e[pos]==MOD)) return pos;
+	return npos;
+}
+
+int evalue (string e){
+	cout << "Evalutions: "<<e<<endl;
+	if(e.length()==0) return 0;
+	int n = cherchesigne(e,0);
+	cout << "la position du signe est: "<<n<<endl;
+	if(n<0) {
+		cout << "Alors je convertis "<<e<<endl;
+		return convertit(e);
+	}
+	return calcule(evalue(extrait(e,0,n)),e[n],evalue(extrait(e,n+1,e.length()-n-1)));
+}
+
+bool valide (string e){
+
 }
