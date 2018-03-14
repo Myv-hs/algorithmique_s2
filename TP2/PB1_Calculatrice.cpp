@@ -21,13 +21,14 @@ const unsigned int PARL = 40, PARR = 41;
 const unsigned int NUM0 = 48, NUM9 = 57;
 
 int main () {
-	string a = "(13+1)/(4+5)";
+	string a; cin >> a;
+
 	cout << evalue(a) <<endl;
 	return 0;
 }
 
 string extrait (string e, int pos, int lg) {
-	cout << "on extrait de: "<<e<<" "<<lg<<" chars apartir de la pos: "<<pos<<endl;
+	//cout << "on extrait de: "<<e<<" "<<lg<<" chars apartir de la pos: "<<pos<<endl;
 	if(lg<=0) return "";
 	return e[pos]+extrait(e,pos+1,lg-1);
 }
@@ -71,21 +72,26 @@ int cherchesigne (string e, int pos) {
 	if(pos>=e.length()) return -1;
 	int npos = cherchesigne(e, pos+1);
 	
-	if(!estsigne(e[pos])) return npos;
-	if(npos<0 && !estsigne(e[pos])) return -1;
-	else if(npos<0 && estsigne(e[pos])) return pos;
-
-	if(!(e[pos]==MULT || e[pos]==DIVI || e[pos]==MOD)) return pos;
-	return npos;
+	/*******************************************
+	finalement, on peu utiliser parent_ouvertes
+	sur la sous-chaine precedent le signe
+	*******************************************/
+	if(estsigne(e[pos]) 
+		&& parent_ouvertes(extrait(e,0,pos))==0 
+		&& (npos<0 || !(e[pos]==MULT || e[pos]==DIVI || e[pos]==MOD))) 
+			return pos;
+	else return npos;
 }
 
 int evalue (string e){
-	cout << "Evalutions: "<<e<<endl;
+	//cout << "Evalutions: "<<e<<endl;
 	if(e.length()==0) return 0;
+	//cout << "cherchons la positions du signe principale"<<endl;
 	int n = cherchesigne(e,0);
-	cout << "la position du signe est: "<<n<<endl;
+	//cout << "la position du signe est: "<<n<<endl;
 	if(n<0) {
-		cout << "Alors je convertis "<<e<<endl;
+		//cout << "Alors je convertis "<<e<<endl;
+		if(e[0]==PARL && e[e.length()-1]==PARR) return evalue(extrait(e,1,e.length()-2));
 		return convertit(e);
 	}
 	return calcule(evalue(extrait(e,0,n)),e[n],evalue(extrait(e,n+1,e.length()-n-1)));
