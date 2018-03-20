@@ -84,9 +84,9 @@ int cherchesigne (string e, int pos) {
 }
 
 int evalue (string e){
-	//cout << "Evalutions: "<<e<<endl;
+	//cout << "Evaluons: "<<e<<endl;
 	if(e.length()==0) return 0;
-	//cout << "cherchons la positions du signe principale"<<endl;
+	//cout << "cherchons la position du signe principale"<<endl;
 	int n = cherchesigne(e,0);
 	//cout << "la position du signe est: "<<n<<endl;
 	if(n<0) {
