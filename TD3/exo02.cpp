@@ -69,3 +69,18 @@ void supprime_premier_n (int n, liste& L){
 	}
 }
 
+int nombre_occurance (int n, liste L){
+	if(L==NULL) return 0;
+	return (L->val==n)+nombre_occurance(n,L->suiv);
+}
+
+bool ordre_croissant (liste L){
+	return (L==NULL or L->suiv==NULL) or ((L->suiv->val >= L->val) and ordre_croissant(L->suiv));
+}
+
+void affiche_impair (liste L) {
+	if(L !=NULL){
+		std::cout<< L->val <<std::endl;
+		if(l->suiv!=NULL) affiche_impair(l->suiv->suiv);
+	}
+}
