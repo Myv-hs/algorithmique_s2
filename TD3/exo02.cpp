@@ -22,6 +22,14 @@ void ajoute_debut (int n, liste& L) { //prof
 	L=p;
 }
 
+void supprime_premier (liste & L){
+	if(L != NULL){
+		liste p = L;
+		L = L->suiv;
+		delete p;
+	}
+}
+
 void ajoute_fin (int n, liste& L){
 	if (L==NULL) ajoute_debut(n,L);
 	else ajoute_fin(n,L->suiv);
@@ -39,6 +47,25 @@ list adresse (int n, liste L) { //prof
 	else return adresse(n,L->suiv);
 }
 
-void ajoute_a (int x, int n, liste L) {
-	
+void ajoute_a (int n, liste& L, liste adr) {
+	if(adr==NULL) ajoute_debut(n,L);
+	else {
+		if(L==adr)
+			ajoute_debut(n,(*L).suiv);
+		else
+			ajoute_a(n,L->suiv,adr);
+	}
 }
+
+void ajoute_apres (int n, liste& L, int x) { //prof
+	ajoute_a(n,L,adresse(x,L));	
+}
+
+void supprime_premier_n (int n, liste& L){
+	if(L!=NULL){
+		if(L->val==n)
+			supprime_premier(L);
+		else supprime_premier_n(n,L->suiv);
+	}
+}
+
