@@ -49,12 +49,21 @@ string telephone (string nom, string prenom, repertoire R){
 	return telephone(nom,prenom,R->suiv);
 }
 
+int rechercherPosition (string nom, string prenom, repertoire R) {
+	if(R==NULL) return 0;
+	if(R->pers.nom==nom and R->pers.prenom==prenom) return 1;
+	int out = 1 + rechercherPosition(nom,prenom,R->suiv);
+	out = out*rechercherPosition(nom,prenom,R->suiv);
+	return out;
+}
+
 int main (){
 	repertoire A;
 	initRep(A);
 	ajouterEnQueue("Bar","Foo","666",A);
 	ajouterEnQueue("Azzi","Yasmina","06 69 69 69 69",A);
+	ajouterEnQueue("Coyle","Charlotte","03 14 15 92 65",A);
 	afficherRepertoire(A);
-	cout << "telephone:"<<telephone("Bar", "Foo", A) <<endl;
+	cout << "pos:"<<rechercherPosition("Azzi", "Yasmina", A) <<endl;
 	return 0;
 }
