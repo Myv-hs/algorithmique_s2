@@ -84,3 +84,7 @@ void affiche_impair (liste L) {
 		if(l->suiv!=NULL) affiche_impair(l->suiv->suiv);
 	}
 }
+
+void affiche_pair (liste L) { //prof
+	if(L!=NULL) affiche_impair(L->suiv);
+}
