@@ -57,6 +57,11 @@ int rechercherPosition (string nom, string prenom, repertoire R) {
 	return out;
 }
 
+void ajouter (int position, string nom, string prenom, string tel,repertoir R) {
+	if(R==NULL or position==1) ajouterEnTete(nom,prenom,tel,R);
+	ajouter(position-1,nom,prenom,tel,R->suiv);
+}
+
 int main (){
 	repertoire A;
 	initRep(A);
