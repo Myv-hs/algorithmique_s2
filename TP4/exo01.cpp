@@ -62,6 +62,15 @@ void ajouter (int position, string nom, string prenom, string tel,repertoir R) {
 	ajouter(position-1,nom,prenom,tel,R->suiv);
 }
 
+void supprimer (int position, repertoire & R) {
+	if(position==1){
+		 repertoire tmp = R;
+		 R = R->suiv;
+		 delete tmp;
+	}
+	else if (position>1) supprimer(position-1,R->suiv);
+}
+
 int main (){
 	repertoire A;
 	initRep(A);
