@@ -57,13 +57,13 @@ int rechercherPosition (string nom, string prenom, repertoire R) {
 	return out;
 }
 
-int rechercherPosition (string nom, repertoire R) {
+/*int rechercherPosition (string nom, repertoire R) {
 	if(R==NULL) return 0;
 	if(R->pers.nom==nom) return 1;
 	int out = 1 + rechercherPosition(nom,prenom,R->suiv);
 	out = out*rechercherPosition(nom,prenom,R->suiv);
 	return out;
-}
+}*/
 
 void ajouter (int position, string nom, string prenom, string tel,repertoir R) {
 	if(R==NULL or position==1) ajouterEnTete(nom,prenom,tel,R);
@@ -79,11 +79,11 @@ void supprimer (int position, repertoire & R) {
 	else if (position>1) supprimer(position-1,R->suiv);
 }
 
-void supprimer (string nom, repertoire & R) {
+/*void supprimer (string nom, repertoire & R) {
 	while(rechercherPosition(nom,R)) {
 		supprimer(rechercherPosition(nom,R),R);
 	}
-}
+}*/
 
 void supprimer_corr (string nom, repertoire & R) {
 	if(R!=NULL){
