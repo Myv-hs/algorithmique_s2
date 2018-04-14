@@ -65,7 +65,7 @@ int rechercherPosition (string nom, string prenom, repertoire R) {
 	return out;
 }*/
 
-void ajouter (int position, string nom, string prenom, string tel,repertoir R) {
+void ajouter (int position, string nom, string prenom, string tel,repertoire R) {
 	if(R==NULL or position==1) ajouterEnTete(nom,prenom,tel,R);
 	ajouter(position-1,nom,prenom,tel,R->suiv);
 }
@@ -95,6 +95,18 @@ void supprimer_corr (string nom, repertoire & R) {
 	}
 }
 
+void swap (repertoire &a){
+	repertoire b = a, c=a->suiv->suiv;
+	a = a->suiv;
+	a->suiv = b;
+}
+
+void trier (repertoire &R) {
+	if(R!=NULL){
+
+	}
+}
+
 int main (){
 	repertoire A;
 	initRep(A);
@@ -102,6 +114,9 @@ int main (){
 	ajouterEnQueue("Azzi","Yasmina","06 69 69 69 69",A);
 	ajouterEnQueue("Coyle","Charlotte","03 14 15 92 65",A);
 	afficherRepertoire(A);
-	cout << "pos:"<<rechercherPosition("Azzi", "Yasmina", A) <<endl;
+	//cout << "pos:"<<rechercherPosition("Azzi", "Yasmina", A) <<endl;
+	//afficherRepertoire(A);
+	swap(A);
+	afficherRepertoire(A);
 	return 0;
 }
