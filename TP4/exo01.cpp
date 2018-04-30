@@ -99,11 +99,17 @@ void swap (repertoire &a){
 	repertoire b = a, c=a->suiv->suiv;
 	a = a->suiv;
 	a->suiv = b;
+	b->suiv = c;
 }
 
 void trier (repertoire &R) {
-	if(R!=NULL){
-
+	cout<<R->pers.nom<<" "<<R->suiv<<endl;
+	if(R!=NULL && R->suiv!=NULL){
+		trier(R->suiv);
+		if(R->pers.nom > R->suiv->pers.nom) {
+			swap(R);
+			trier(R);
+		}	
 	}
 }
 
@@ -113,10 +119,13 @@ int main (){
 	ajouterEnQueue("Bar","Foo","666",A);
 	ajouterEnQueue("Azzi","Yasmina","06 69 69 69 69",A);
 	ajouterEnQueue("Coyle","Charlotte","03 14 15 92 65",A);
+	ajouterEnTete("Zimmerman","Juila","06 28 31 86 30",A);
 	afficherRepertoire(A);
 	//cout << "pos:"<<rechercherPosition("Azzi", "Yasmina", A) <<endl;
 	//afficherRepertoire(A);
-	swap(A);
+	cout<<endl;
+	trier(A);
+	cout<<endl;
 	afficherRepertoire(A);
 	return 0;
 }
