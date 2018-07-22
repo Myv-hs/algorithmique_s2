@@ -103,7 +103,7 @@ void swap (repertoire &a){
 }
 
 void trier (repertoire &R) {
-	cout<<R->pers.nom<<" "<<R->suiv<<endl;
+	cout<<R->pers.nom<<" "<<((R->suiv==NULL)? "fin de liste" : R->suiv->pers.nom)<<endl;
 	if(R!=NULL && R->suiv!=NULL){
 		trier(R->suiv);
 		if(R->pers.nom > R->suiv->pers.nom) {
